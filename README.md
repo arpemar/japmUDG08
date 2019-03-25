@@ -4,3 +4,4 @@
 # npm install electron
 # npm install electron-reload
 # npm install electron-packager
+# npm start
