@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mis Productos</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
+  </head>
+  <body class="myBackGround">
+
+
+    <div class="container-fluid p-4">
+      <div class="row" id="products">
+      </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+      const { ipcRenderer } = require('electron');
+      const products = document.querySelector('#products');
+
+      // New Product
+      ipcRenderer.on('product:new', (e, newProduct) => {
+
+        const newProductTemplate = `
+            <div class="col-xs-4 p-1">
+                <div class="card text-center border-dark">
+                    <div class="card-header bg-dark">
+                        <h4 class="card-title">${newProduct.name}</h4>
+                    </div>
+                    <div class="card-body bg-secondary">
+                        ${newProduct.description}
+                    <hr>
+                        $ ${newProduct.price} MXN
+                    </div>
+                    <div class="card-footer bg-secondary">
+                        <button class="btn btn-danger btn-sm">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        products.innerHTML += newProductTemplate;
+
+        const btns = document.querySelectorAll('.btn.btn-danger');
+
+        btns.forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.target.parentElement.parentElement.parentElement.remove();
+          });
+        })
+      });
+
+      // Remove All Products
+      ipcRenderer.on('products:remove-all', e => {
+        products.innerHTML = '';
+      });
+
+      // Remove Single Product
+      function removeProduct(e) {
+      }
+    </script>
+  </body>
+</html>
+

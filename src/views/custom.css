@@ -1,0 +1,18 @@
+.card {
+    width: 200px;
+}
+
+.myBackGround{
+    background-image: url("../media/backgrounImage.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.newProductBackground{
+    background-color: red;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
